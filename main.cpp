@@ -23,8 +23,10 @@ using namespace std;
 int main(int argc, char** argv) {
 	setlocale(LC_ALL, "spanish"); //Permite utilizar tildes en la consola de C++
 	
-	const float cargosPorServicio = 1000; 
+	const float cargosPorServicio = 1000; //cargo de servicio por cada entrada vendida
 	
+	
+	//declaración de variables
 	int numFactura = 0, cedula = 0, localidad = 0, cantEntradas = 0, precioEntrada = 0, opcionMenu;
 	int cantLocal1 = 0, cantLocal2 = 0, cantLocal3 = 0;
 	float acumuladoLocacalidad1 = 0.0, acumuladoLocacalidad2 = 0.0, acumuladoLocacalidad3 = 0.0; 
@@ -32,7 +34,17 @@ int main(int argc, char** argv) {
 	char nombre[100];
 	string nomLocalidad;
 	
+	
+	printf("****************************** \n");
+	printf("*                            * \n");
+	printf("*         Boletería          * \n");
+	printf("*                            * \n");
+	printf("****************************** \n");
+	printf("\n");
+	
 	do{
+		
+		//solicitud de datos al usuario
 		printf("Ingrese el número de Factura: ");
 		scanf("%i", &numFactura);
 		
@@ -52,17 +64,17 @@ int main(int argc, char** argv) {
 		printf("Digite la cantidad de Entradas: ");
 		scanf("%i", &cantEntradas);
 	
-		if(cantEntradas > 5){
+		if(cantEntradas > 5){ //Usuario solo puede comprar un máximo de 5 entradas
 			printf("Usuario solo puede comprar un máximo de 5 entradas \n");
 			printf("Digite la cantidad de Entradas: ");
 			scanf("%i", &cantEntradas);
 		}
 	
-	//Cálculos de Subtotal, cargos por servicio y Total a pagar
+		//Cálculos de Subtotal, cargos por servicio y Total a pagar
 		if(localidad==1){
 			precioEntrada = 10500;
 			nomLocalidad = "Sol Norte/Sur";
-			cantLocal1++;
+			cantLocal1+=cantEntradas;
 			subTotal = cantEntradas * precioEntrada;
 			totalCargos = cantEntradas * cargosPorServicio;
 			totalPagar = subTotal + totalCargos;
@@ -72,7 +84,7 @@ int main(int argc, char** argv) {
 			if(localidad==2){
 				precioEntrada = 20500;
 				nomLocalidad = "Sombra Este/Oeste";
-				cantLocal2++;
+				cantLocal2+=cantEntradas;
 				subTotal = cantEntradas * precioEntrada;
 				totalCargos = cantEntradas * cargosPorServicio;
 				totalPagar = subTotal + totalCargos;
@@ -82,7 +94,7 @@ int main(int argc, char** argv) {
 				if(localidad==3){
 					precioEntrada = 25500;
 					nomLocalidad = "Preferencial";
-					cantLocal3++;
+					cantLocal3+=cantEntradas;
 					subTotal = cantEntradas * precioEntrada;
 					totalCargos = cantEntradas * cargosPorServicio;
 					totalPagar = subTotal + totalCargos;
@@ -92,7 +104,7 @@ int main(int argc, char** argv) {
 			}
 		}
 	
-	//Mostrar en pantalla la información solicitada
+			//Mostrar en pantalla la información solicitada
 			printf("\n");
 			printf("****************************************************\n");
 			printf(" Número de Factura: %i\n", numFactura);
@@ -112,6 +124,7 @@ int main(int argc, char** argv) {
 			scanf("%i", &opcionMenu);
 			printf("\n");
 	}while(opcionMenu ==1);
+	
 	
 	printf("\n");
 	printf("****************************************************\n");
